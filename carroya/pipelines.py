@@ -9,10 +9,12 @@ import json
 
 
 class JsonWriterPipeline(object):
-
-    def __init__(self):
-        self.file = open('items.json', 'wb')
-
+    def open_spider(self, spider):
+        self.file = open('products.jl', 'w')
+    
+    def close_spider(self, spider):
+        self.file.close()
+    
     def process_item(self, item, spider):
         line = json.dumps(dict(item)) + "\n"
         self.file.write(line)
